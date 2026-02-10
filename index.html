@@ -452,11 +452,6 @@
   function onSheepEaten() {
     if (!allowedToStart) return;
     sheepEaten += 1;
-    // Optional: give a small message in overlay when 1 or 2 eaten
-    if (sheepEaten > 0 && sheepEaten < sheepTarget) {
-      showOverlay(true, `Nice! ${sheepEaten}/${sheepTarget} sheep eaten`);
-      setTimeout(() => { if (running) showOverlay(false); }, 900);
-    }
     if (sheepEaten >= sheepTarget) {
       // success
       endGame(true);
