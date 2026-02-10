@@ -478,9 +478,8 @@ playerNameInput.addEventListener('keydown', (e) => {
     running = false;
     cancelAnimationFrame(loopId);
     if (success) {
-      // Redirect to main site page (relative)
-      // You can change 'main.html' to the actual page you want to open
-      window.location.href = 'main.html';
+      // Redirect to victory page
+      window.location.href = 'victory.html';
     } else {
       // Show try again modal
       showModal(tryAgainModal);
