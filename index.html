@@ -450,6 +450,9 @@ playerNameInput.addEventListener('keydown', (e) => {
   introStartBtn.addEventListener('click', () => {
     const name = playerNameInput.value.trim();
     if (!name) return;
+    
+    localStorage.setItem('dragonPlayerName', name);
+    
     // Save name if you want: localStorage.setItem('playerName', name);
     allowedToStart = true;
     hideModal(introModal);
