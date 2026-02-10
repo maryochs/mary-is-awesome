@@ -480,12 +480,9 @@
   // Retry button: hide try-again modal and restart the flow
   retryBtn.addEventListener('click', () => {
     hideModal(tryAgainModal);
-    // Reset gate so they must re-enter name (optional). Here we show intro again.
-    allowedToStart = false;
-    playerNameInput.value = '';
-    introStartBtn.disabled = true;
-    openIntroModal();
-  });
+    reset();
+    start();
+});
 
   // Cancel retry: just hide modal and show overlay message
   cancelRetryBtn.addEventListener('click', () => {
