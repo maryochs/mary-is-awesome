@@ -477,11 +477,11 @@ playerNameInput.addEventListener('keydown', (e) => {
   function endGame(success) {
     running = false;
     cancelAnimationFrame(loopId);
+  
     if (success) {
-      // Redirect to victory page
+      localStorage.setItem('dragonGameCompleted', 'yes');
       window.location.href = 'victory.html';
     } else {
-      // Show try again modal
       showModal(tryAgainModal);
     }
   }
