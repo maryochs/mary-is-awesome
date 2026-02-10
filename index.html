@@ -186,6 +186,19 @@
 
 <script>
 (function() {
+
+  // If the player already beat the game, show a friendly message instead of loading the game
+if (localStorage.getItem('dragonGameCompleted') === 'yes') {
+  document.body.innerHTML = `
+    <div style="text-align:center; padding:40px; color:#e5e7eb; font-family:system-ui;">
+      <h1>🐉 This dragon is full and doesn't want to eat more sheep! </h1>
+      <a href="main.html" style="color:#86efac; font-size:20px;">Enter the Website</a><br><br>
+      <a href="https://maryochs.github.io/dragon/" style="color:#86efac;">Play the full game</a>
+    </div>
+  `;
+  return; // Stop the rest of the game script from running
+}
+
   const canvas = document.getElementById('c');
   const ctx = canvas.getContext('2d');
   const overlay = document.getElementById('overlay');
@@ -471,18 +484,20 @@ playerNameInput.addEventListener('keydown', (e) => {
   }
 
   // Centralized endGame handler
-  function endGame(success) {
-    running = false;
-    cancelAnimationFrame(loopId);
-    if (success) {
-      // Redirect to main site page (relative)
-      // You can change 'main.html' to the actual page you want to open
-      window.location.href = 'main.html';
-    } else {
-      // Show try again modal
-      showModal(tryAgainModal);
-    }
+function endGame(success) {
+  running = false;
+  cancelAnimationFrame(loopId);
+
+  if (success) {
+    // Mark the game as completed
+    localStorage.setItem('dragonGameCompleted', 'yes');
+
+    // Redirect to victory page (or main.html)
+    window.location.href = 'victory.html';
+  } else {
+    showModal(tryAgainModal);
   }
+}
 
   // Retry button: hide try-again modal and restart the flow
   retryBtn.addEventListener('click', () => {
