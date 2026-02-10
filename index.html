@@ -423,6 +423,13 @@
     introStartBtn.disabled = playerNameInput.value.trim().length === 0;
   });
 
+  // Allow pressing Enter to start
+playerNameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !introStartBtn.disabled) {
+    introStartBtn.click();
+  }
+});
+
   // Focus input on modal open
   function openIntroModal() {
     showModal(introModal);
